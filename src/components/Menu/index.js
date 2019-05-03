@@ -1,12 +1,18 @@
 import React from 'react';
 import QRCode from 'react-native-qrcode';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Container,Code } from './styles';
+import { Container,Code,Nav,NavItem,NavText,SignOutButton,SignOutButtonText } from './styles';
 
-export default function Menu()
+export default function Menu( {translateY} )
 {
     return (
-        <Container>
+        <Container style={{
+            opacity: translateY.interpolate({
+                inputRange  :   [0,150],
+                outputRange :   [0,1],
+            }),
+        }}>
           <Code>
               <QRCode value="http://rocketseat.com.br" size={80}
               fgColor="#FFF"
@@ -14,25 +20,29 @@ export default function Menu()
           </Code>  
 
           <Nav>
-              <NavItems>
+              <NavItem>
                   <Icon name="help-outline" size={20} color="#FFF"/>
                   <NavText>Me Ajuda</NavText>
-              </NavItems>
+              </NavItem>
 
-              <NavItems>
-                  <Icon name="help-outline" size={20} color="#FFF"/>
-                  <NavText>Me Ajuda</NavText>
-              </NavItems>
+              <NavItem>
+                  <Icon name="person-outline" size={20} color="#FFF"/>
+                  <NavText>Perfil</NavText>
+              </NavItem>
 
-              <NavItems>
-                  <Icon name="help-outline" size={20} color="#FFF"/>
-                  <NavText>Me Ajuda</NavText>
-              </NavItems>
+              <NavItem>
+                  <Icon name="credit-card" size={20} color="#FFF"/>
+                  <NavText>Configurar Cartão</NavText>
+              </NavItem>
 
-              <NavItems>
-                  <Icon name="help-outline" size={20} color="#FFF"/>
-                  <NavText>Me Ajuda</NavText>
-              </NavItems>
+              <NavItem>
+                  <Icon name="smartphone" size={20} color="#FFF"/>
+                  <NavText>Configurações do App</NavText>
+              </NavItem>
+
+              <SignOutButton onPress={()=>{}}>
+               <SignOutButtonText>Sair do App</SignOutButtonText> 
+              </SignOutButton>
           </Nav>
         </Container>
     );
